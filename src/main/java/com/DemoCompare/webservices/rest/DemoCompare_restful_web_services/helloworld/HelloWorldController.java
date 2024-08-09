@@ -20,7 +20,7 @@ public class HelloWorldController {
 	// java Bean..
 	@GetMapping(path = "/hello-world-bean")
 	public HelloWorldBean helloWorldBean() {
-		return new HelloWorldBean("Fuck your mom");
+		return new HelloWorldBean("Fuck  mom");
 	}
 	
 	// Path Parameters
