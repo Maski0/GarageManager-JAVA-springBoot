@@ -37,5 +37,9 @@ public class EmployeeDaoService {
 		Predicate<? super Employee> predicate = employee -> employee.getId().equals(employeeID);
 		return employees.stream().filter(predicate).findFirst().orElse(null);
 	}
+	public void DeleteEmployee(Integer employeeID) {
+		Predicate<? super Employee> predicate = employee -> employee.getId().equals(employeeID);
+		employees.removeIf(predicate);
+	}
 
 }

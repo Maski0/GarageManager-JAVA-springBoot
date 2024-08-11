@@ -2,10 +2,16 @@ package com.DemoCompare.webservices.rest.DemoCompare_restful_web_services.Employ
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 public class Employee {
 	
-	private Integer id;
+	private Integer id; 
+	
+	@Size(min=3, message = "Name Should have Atleast have 3 characters" )
 	private String name;
+	@Past(message= "Birth Date Should be in Past")
 	private LocalDate birthDate;
 	
 	public Employee(Integer id, String name, LocalDate birthDate) {
