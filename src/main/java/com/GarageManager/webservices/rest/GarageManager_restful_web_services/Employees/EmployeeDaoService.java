@@ -17,9 +17,9 @@ public class EmployeeDaoService {
 	private static int userCount = 0;
 	
 	static {
-		employees.add(new Employee(++userCount,"Adam",LocalDate.now().minusYears(30)));
-		employees.add(new Employee(++userCount,"eve",LocalDate.now().minusYears(25)));
-		employees.add(new Employee(++userCount,"jim",LocalDate.now().minusYears(20)));
+		employees.add(new Employee(++userCount,"Adam","Hyderabad,India","someone@email.com",9563654715L,LocalDate.now().minusYears(25)));
+		employees.add(new Employee(++userCount,"eve","Hyderabad,India","someone@email.com",7543554715L,LocalDate.now().minusYears(20)));
+		employees.add(new Employee(++userCount,"jim","Hyderabad,India","someone@email.com",8963254715L,LocalDate.now().minusYears(10)));
 	}
 	
 	public Employee save(Employee employee) {
