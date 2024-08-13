@@ -1,4 +1,4 @@
-package com.DemoCompare.webservices.rest.DemoCompare_restful_web_services.Employees;
+package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Employees;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class EmployeeDaoService {
 	}
 	
 	public Employee save(Employee employee) {
-		employee.setId(++userCount);
+		employee.setEmployee_id(++userCount);
 		employees.add(employee);
 		return employee;
 	}
@@ -34,11 +34,11 @@ public class EmployeeDaoService {
 	}
 	
 	public Employee GetEmployee(Integer employeeID) {
-		Predicate<? super Employee> predicate = employee -> employee.getId().equals(employeeID);
+		Predicate<? super Employee> predicate = employee -> employee.getEmployee_id().equals(employeeID);
 		return employees.stream().filter(predicate).findFirst().orElse(null);
 	}
 	public void DeleteEmployee(Integer employeeID) {
-		Predicate<? super Employee> predicate = employee -> employee.getId().equals(employeeID);
+		Predicate<? super Employee> predicate = employee -> employee.getEmployee_id().equals(employeeID);
 		employees.removeIf(predicate);
 	}
 

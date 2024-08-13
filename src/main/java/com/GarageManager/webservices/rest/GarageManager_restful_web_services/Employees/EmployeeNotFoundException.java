@@ -1,4 +1,4 @@
-package com.DemoCompare.webservices.rest.DemoCompare_restful_web_services.Employees;
+package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Employees;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

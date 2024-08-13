@@ -1,4 +1,4 @@
-package com.DemoCompare.webservices.rest.DemoCompare_restful_web_services.exception;
+package com.GarageManager.webservices.rest.GarageManager_restful_web_services.exception;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.DemoCompare.webservices.rest.DemoCompare_restful_web_services.Employees.EmployeeNotFoundException;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Employees.EmployeeNotFoundException;
 
 @ControllerAdvice
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {

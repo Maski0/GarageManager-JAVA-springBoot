@@ -8,8 +8,8 @@
 		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.DemoCompare.webservices.rest</groupId>
-	<artifactId>DemoCompare-restful-web-services</artifactId>
+	<groupId>com.GarageManager.webservices.rest</groupId>
+	<artifactId>GarageManager-restful-web-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>DemoCompare-restful-web-services</name>
 	<description>Demo project to compare b/w Restful &amp; SOAP for Spring Boot</description>
@@ -38,6 +38,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
+   		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
@@ -58,6 +60,18 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!--<dependency>
+      		<groupId>org.springdoc</groupId>
+      		<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      		<version>2.6.0</version>
+   		</dependency>
+   		
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency> -->
+		
 	</dependencies>
 
 	<build>

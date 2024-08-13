@@ -1,4 +1,4 @@
-package com.DemoCompare.webservices.rest.DemoCompare_restful_web_services.exception;
+package com.GarageManager.webservices.rest.GarageManager_restful_web_services.exception;
 
 import java.time.LocalDateTime;
 
