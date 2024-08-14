@@ -1,10 +1,14 @@
 package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Employees;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -33,6 +37,9 @@ public class Employee {
 	private long ph_no;
 	
 	private LocalDate date_of_Joining;
+	
+	@ManyToMany(mappedBy = "employees")
+    private List<Booking> bookings;
 	
 	
 	public Employee(Integer employee_id,

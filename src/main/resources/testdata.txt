@@ -1,6 +1,3 @@
-Loggin in properties
-logging.level.org.springframework=debug
-
 
 insert into employee(birth_date,employee_id,employee_name)
 values (current_date(),100,'Jatin');
