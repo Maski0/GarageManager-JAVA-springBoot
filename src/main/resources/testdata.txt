@@ -1,9 +1,9 @@
 
-insert into employee(birth_date,employee_id,employee_name)
-values (current_date(),100,'Jatin');
+insert into employee(employee_name, address, e_mail, ph_no, date_of_joining)
+values ('Jatin','Uppal,Hyderabad','something@gmail.com', 9701341827, 'current_date()');
 
-insert into employee(birth_date,employee_id,employee_name)
-values (current_date(),101,'Pandey');
+insert into employee(employee_name, address, e_mail, ph_no, date_of_joining)
+values ('Jatin','Uppal,Hyderabad','something@gmail.com', 9701341827, 'current_date()');
 
-insert into employee(birth_date,employee_id,employee_name)
-values (current_date(),102,'chutiya');
+insert into employee(employee_name, address, e_mail, ph_no, date_of_joining)
+values ('Jatin','Uppal,Hyderabad','something@gmail.com', 9701341827, 'current_date()');

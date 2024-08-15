@@ -121,7 +121,18 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [employee_id=" + employee_id + ", employee_name=" + employee_name + ", address=" + address
-				+ ", e_mail=" + e_mail + ", ph_no=" + ph_no + ", date_of_Joining=" + date_of_Joining + "]";
+				+ ", e_mail=" + e_mail + ", ph_no=" + ph_no + ", date_of_Joining=" + date_of_Joining + ", bookings="
+				+ bookings + "]";
+	}
+
+
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
 	}
 	
 
