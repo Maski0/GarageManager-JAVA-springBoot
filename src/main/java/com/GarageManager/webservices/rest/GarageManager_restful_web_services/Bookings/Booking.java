@@ -7,7 +7,9 @@ import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Emp
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Payments.Payment;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Services.Service;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -30,7 +32,7 @@ public class Booking {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="vehicle_id")
-	@JsonIgnore
+	@JsonBackReference
 	private Vehicle vehicle;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -41,6 +43,7 @@ public class Booking {
     )
 	private List<Employee> employees;
 	
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="service_id")
 	private Service service;
@@ -56,6 +59,7 @@ public class Booking {
 	private Integer totalAmountDue;
 	
 	@OneToMany(mappedBy = "booking")
+	@JsonManagedReference
 	private List<Payment> payments;
 
 	public Integer getBooking_id() {

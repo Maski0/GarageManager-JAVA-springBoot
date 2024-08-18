@@ -3,6 +3,7 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Pa
 import java.time.LocalDate;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -19,6 +20,7 @@ public class Payment {
 	private Integer payment_id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	@JoinColumn(name="booking_id")
 	private Booking booking;
 	

@@ -3,8 +3,9 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Cu
 import java.util.List;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -30,22 +31,22 @@ public class Customer {
 	private String e_mail;
 	
 	@NotNull
-	private long ph_no;
+	private long phoneNumber;
 	
-	@OneToMany(mappedBy = "customer")
-	@JsonIgnore
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<Vehicle> vehicles;
 
 	public Customer(Integer customer_id,
 			@Size(min = 3, max = 30, message = "Name Should have Atleast 3 characters") String customer_name,
 			@Size(max = 30, message = "Address Should Not have More than 30 characters") String address,
-			@Email(regexp = ".+[@].+[\\.].+") String e_mail, @NotNull long ph_no) {
+			@Email(regexp = ".+[@].+[\\.].+") String e_mail, @NotNull long phoneNumber) {
 		super();
 		this.customer_id = customer_id;
 		this.customer_name = customer_name;
 		this.address = address;
 		this.e_mail = e_mail;
-		this.ph_no = ph_no;
+		this.phoneNumber = phoneNumber;
 	}
 
 	public Integer getCustomer_id() {
@@ -80,17 +81,22 @@ public class Customer {
 		this.e_mail = e_mail;
 	}
 
-	public long getPh_no() {
-		return ph_no;
+	public long getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPh_no(long ph_no) {
-		this.ph_no = ph_no;
+	public void setPhoneNumber(long ph_no) {
+		this.phoneNumber = ph_no;
 	}
 
 	@Override
 	public String toString() {
 		return "Customer [customer_id=" + customer_id + ", customer_name=" + customer_name + ", address=" + address
-				+ ", e_mail=" + e_mail + ", ph_no=" + ph_no + "]";
+				+ ", e_mail=" + e_mail + ", ph_no=" + phoneNumber + "]";
+	}
+
+	protected Customer() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,8 +26,8 @@ public class Service {
 	
 	private Integer servicDuration;
 	
-	@OneToMany(mappedBy = "service")
-	@JsonIgnore
+	@OneToMany(mappedBy = "service", orphanRemoval = true)
+	@JsonManagedReference
 	private List<Booking> bookings;
 
 	public Integer getService_id() {

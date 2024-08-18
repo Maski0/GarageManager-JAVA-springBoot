@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.exception.NotFoundException;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa.EmployeeRepository;
 
 import jakarta.validation.Valid;
@@ -31,12 +32,13 @@ public class EmployeeResource {
 	public List<Employee> retrieveAllEmployees(){
 		return repository.findAll();
 	}
+	
 	// Get Specific Employee
 	@GetMapping("/employees/{employeeID}")
 	public Employee retrieveEmployees(@PathVariable Integer employeeID){
 		Optional<Employee> employee = repository.findById(employeeID);
 		if(employee.isEmpty())
-			throw new EmployeeNotFoundException("EmployeeID:" + employeeID);
+			throw new NotFoundException("EmployeeID:" + employeeID);
 		return employee.get();
 	}
 	
