@@ -5,11 +5,15 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Customers.Customer;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.exception.NotFoundException;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa.CustomerRepository;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa.VehicalRepository;
 
 import jakarta.validation.Valid;
@@ -18,9 +22,11 @@ import jakarta.validation.Valid;
 public class VehicleResource {
 	
 	private VehicalRepository repository;
+	private CustomerRepository customerRepository;
 	
-	public VehicleResource(VehicalRepository repository) {
+	public VehicleResource(VehicalRepository repository, CustomerRepository customerRepository) {
 		this.repository = repository;
+		this.customerRepository = customerRepository;
 	}
 	
 	
@@ -30,10 +36,15 @@ public class VehicleResource {
 		return repository.findAll();
 	}
 	
-	// 
-	@PostMapping("/Vehicles")
-	public ResponseEntity<Vehicle> createVehicle(@Valid @RequestBody Vehicle vehicle){
+	// Create A Vehicle for the Customer ID
+	@PostMapping("/Vehicles/{Customer_PhoneNumber}")
+	public ResponseEntity<Vehicle> createVehicle(@PathVariable long Customer_PhoneNumber, @Valid @RequestBody Vehicle vehicle){
+		Customer customer = customerRepository.findByPhoneNumber(Customer_PhoneNumber).orElseThrow(
+				() -> new NotFoundException("Customer_PhoneNumber:" + Customer_PhoneNumber));
+		
+		vehicle.setCustomer(customer);
 		Vehicle saveVehicle = repository.save(vehicle);
+		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{employeeID}").buildAndExpand(saveVehicle.getVehicle_id()).toUri();
 		return ResponseEntity.created(location).build();
 	}

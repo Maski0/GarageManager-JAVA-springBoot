@@ -19,7 +19,7 @@ public class Customer {
 	
 	@Id
 	@GeneratedValue
-	private Integer customer_id; 
+	private Integer customer_id;
 	
 	@Size(min=3, max=30,message = "Name Should have Atleast 3 characters")
 	private String customer_name;
@@ -34,7 +34,7 @@ public class Customer {
 	private long phoneNumber;
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
+	@JsonManagedReference("Customer-Vehicle")
 	private List<Vehicle> vehicles;
 
 	public Customer(Integer customer_id,

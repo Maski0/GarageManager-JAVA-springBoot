@@ -5,8 +5,6 @@ import java.util.List;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Customers.Customer;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
@@ -25,7 +23,7 @@ public class Vehicle {
 	@GeneratedValue
 	private Integer vehicle_id;
 	
-	@JsonBackReference
+	@JsonBackReference("Customer-Vehicle")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="customer_id")
 	private Customer customer;
@@ -40,7 +38,7 @@ public class Vehicle {
 	private String VehiclePlateNumber;
 	
 	@OneToMany(mappedBy = "vehicle", orphanRemoval = true)
-	@JsonManagedReference
+	@JsonManagedReference("Vehicle-Booking")
 	private List<Booking> bookings;
 
 	public Integer getVehicle_id() {
@@ -79,6 +77,22 @@ public class Vehicle {
 	public String toString() {
 		return "Vehicle [vehicle_id=" + vehicle_id + ", customer=" + customer + ", make=" + make + ", model=" + model
 				+ ", VehiclePlateNumber=" + VehiclePlateNumber + "]";
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
 	}
 
 }

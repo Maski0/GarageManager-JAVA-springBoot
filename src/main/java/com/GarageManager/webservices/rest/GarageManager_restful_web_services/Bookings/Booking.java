@@ -32,7 +32,7 @@ public class Booking {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="vehicle_id")
-	@JsonBackReference
+	@JsonBackReference("Vehicle-Booking")
 	private Vehicle vehicle;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
