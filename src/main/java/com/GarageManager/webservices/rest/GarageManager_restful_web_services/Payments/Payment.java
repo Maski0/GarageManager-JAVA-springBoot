@@ -20,7 +20,7 @@ public class Payment {
 	private Integer payment_id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonBackReference
+	@JsonBackReference("Booking-Payment")
 	@JoinColumn(name="booking_id")
 	private Booking booking;
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -38,7 +39,7 @@ public class Employee {
 	
 	private LocalDate date_of_Joining;
 	
-	@ManyToMany(mappedBy = "employees")
+	@ManyToMany(mappedBy = "employees", fetch = FetchType.LAZY)
     private List<Booking> bookings;
 	
 	

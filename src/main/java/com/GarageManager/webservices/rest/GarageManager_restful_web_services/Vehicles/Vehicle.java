@@ -73,12 +73,6 @@ public class Vehicle {
 		VehiclePlateNumber = vehiclePlateNumber;
 	}
 
-	@Override
-	public String toString() {
-		return "Vehicle [vehicle_id=" + vehicle_id + ", customer=" + customer + ", make=" + make + ", model=" + model
-				+ ", VehiclePlateNumber=" + VehiclePlateNumber + "]";
-	}
-
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -93,6 +87,21 @@ public class Vehicle {
 
 	public void setBookings(List<Booking> bookings) {
 		this.bookings = bookings;
+	}
+	
+	@Override
+	public String toString() {
+		return "Vehicle [vehicle_id=" + vehicle_id + ", customer=" + customer + ", make=" + make + ", model=" + model
+				+ ", VehiclePlateNumber=" + VehiclePlateNumber + ", bookings=" + bookings + "]";
+	}
+	
+	public void UpdateValues(Vehicle vehicle) {
+		
+		this.make = (vehicle.getMake() != null) ? vehicle.getMake() : this.make;
+		this.model = (vehicle.getModel() != null) ? vehicle.getModel() : this.model;
+		this.VehiclePlateNumber = (vehicle.getVehiclePlateNumber() != null) ? vehicle.getVehiclePlateNumber() : this.VehiclePlateNumber;
+		this.customer = (vehicle.getCustomer() != null) ? vehicle.getCustomer() : this.customer;
+		this.bookings = (vehicle.getBookings() != null) ? vehicle.getBookings() : this.bookings;
 	}
 
 }
