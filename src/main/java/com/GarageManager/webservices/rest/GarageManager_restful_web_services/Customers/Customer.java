@@ -31,7 +31,7 @@ public class Customer {
 	private String e_mail;
 	
 	@NotNull
-	private long phoneNumber;
+	private Long phoneNumber;
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference("Customer-Vehicle")
@@ -81,14 +81,22 @@ public class Customer {
 		this.e_mail = e_mail;
 	}
 
-	public long getPhoneNumber() {
+	public Long getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(long ph_no) {
+	public void setPhoneNumber(Long ph_no) {
 		this.phoneNumber = ph_no;
 	}
 
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+	
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
+	}
+	
 	@Override
 	public String toString() {
 		return "Customer [customer_id=" + customer_id + ", customer_name=" + customer_name + ", address=" + address
@@ -97,6 +105,14 @@ public class Customer {
 
 	protected Customer() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+
+	public void UpdateValues(Customer customer) {
+		this.customer_name = (customer.getCustomer_name() != null) ? customer.getCustomer_name() : this.customer_name;
+		this.address = (customer.getAddress() != null) ? customer.getAddress() : this.address;
+		this.e_mail = (customer.getE_mail() != null) ? customer.getE_mail() : this.e_mail;
+		this.phoneNumber = (customer.getPhoneNumber() != null) ? customer.getPhoneNumber() : this.phoneNumber;
+		this.vehicles = (customer.getVehicles() != null || customer.getVehicles().isEmpty() ) ? customer.getVehicles() : this.vehicles;
+	}
+
 }

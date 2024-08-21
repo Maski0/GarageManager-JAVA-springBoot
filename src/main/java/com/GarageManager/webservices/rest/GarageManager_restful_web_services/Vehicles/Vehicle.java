@@ -101,7 +101,7 @@ public class Vehicle {
 		this.model = (vehicle.getModel() != null) ? vehicle.getModel() : this.model;
 		this.VehiclePlateNumber = (vehicle.getVehiclePlateNumber() != null) ? vehicle.getVehiclePlateNumber() : this.VehiclePlateNumber;
 		this.customer = (vehicle.getCustomer() != null) ? vehicle.getCustomer() : this.customer;
-		this.bookings = (vehicle.getBookings() != null) ? vehicle.getBookings() : this.bookings;
+		this.bookings = (vehicle.getBookings() != null || vehicle.getBookings().isEmpty()) ? vehicle.getBookings() : this.bookings;
 	}
 
 }

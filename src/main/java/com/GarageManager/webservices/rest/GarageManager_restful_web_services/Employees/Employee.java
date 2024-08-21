@@ -35,7 +35,7 @@ public class Employee {
 	private String e_mail;
 	
 	@NotNull
-	private long ph_no;
+	private Long ph_no;
 	
 	private LocalDate date_of_Joining;
 	
@@ -47,7 +47,7 @@ public class Employee {
 			String employee_name,
 			String address,
 			String e_mail,
-			long ph_no,
+			Long ph_no,
 			LocalDate date_of_Joining) {
 		super();
 		this.employee_id = employee_id;
@@ -99,12 +99,12 @@ public class Employee {
 	}
 
 
-	public long getPh_no() {
+	public Long getPh_no() {
 		return ph_no;
 	}
 
 
-	public void setPh_no(long ph_no) {
+	public void setPh_no(Long ph_no) {
 		this.ph_no = ph_no;
 	}
 
@@ -136,9 +136,16 @@ public class Employee {
 		this.bookings = bookings;
 	}
 	
-
 	
-
+	
+	public void UpdateValues(Employee employee) {
+		this.employee_name = (employee.getEmployee_name() != null) ? employee.getEmployee_name() : this.employee_name;
+		this.address = (employee.getAddress() != null) ? employee.getAddress() : this.address;
+		this.e_mail = (employee.getE_mail() != null) ? employee.getE_mail() : this.e_mail;
+		this.ph_no = (employee.getPh_no() != null) ? employee.getPh_no() : this.ph_no;
+		this.date_of_Joining = (employee.getDate_of_Joining() != null) ? employee.getDate_of_Joining() : this.date_of_Joining;
+		this.bookings = (employee.getBookings() != null || employee.getBookings().isEmpty()) ? employee.getBookings() : this.bookings;
+	}
 	
 
 }

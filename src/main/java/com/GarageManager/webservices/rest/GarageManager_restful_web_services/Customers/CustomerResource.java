@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -48,6 +49,15 @@ public class CustomerResource {
 		Customer saveCustomer = repository.save(customer);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{employeeID}").buildAndExpand(saveCustomer.getCustomer_id()).toUri();
 		return ResponseEntity.created(location).build();
+	}
+	
+	@PutMapping("/customer")
+	public Customer updateCustomer(@Valid @RequestBody Customer customer) {
+		Customer existingCustomer = repository.findById(customer.getCustomer_id()).orElseThrow(
+				() -> new NotFoundException("Customer ID: " + customer.getCustomer_id()));
+		
+		existingCustomer.UpdateValues(customer);
+		return repository.save(existingCustomer);
 	}
 	
 	// Delete Specific Customer

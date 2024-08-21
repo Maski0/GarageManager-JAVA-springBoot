@@ -23,7 +23,7 @@ public class Service {
 	
 	private String serviceDescription;
 	
-	private Integer servicDuration;
+	private Integer serviceDuration;
 	
 	@OneToMany(mappedBy = "service", orphanRemoval = true)
 	@JsonManagedReference("Service-Booking")
@@ -53,12 +53,12 @@ public class Service {
 		this.serviceDescription = serviceDescription;
 	}
 
-	public Integer getServicDuration() {
-		return servicDuration;
+	public Integer getServiceDuration() {
+		return serviceDuration;
 	}
 
-	public void setServicDuration(Integer servicDuration) {
-		this.servicDuration = servicDuration;
+	public void setServiceDuration(Integer servicDuration) {
+		this.serviceDuration = servicDuration;
 	}
 
 	public List<Booking> getBookings() {
@@ -72,7 +72,14 @@ public class Service {
 	@Override
 	public String toString() {
 		return "Service [service_id=" + service_id + ", serviceName=" + serviceName + ", serviceDescription="
-				+ serviceDescription + ", servicDuration=" + servicDuration + ", bookings=" + bookings + "]";
+				+ serviceDescription + ", servicDuration=" + serviceDuration + ", bookings=" + bookings + "]";
+	}
+
+	public void UpdateValues(Service service) {
+		this.serviceName = (service.getServiceName() != null) ? service.getServiceName() : this.serviceName;
+		this.serviceDescription = (service.getServiceDescription() != null) ? service.getServiceDescription() : this.serviceDescription;
+		this.serviceDuration = (service.getServiceDuration() != null) ? service.getServiceDuration() : this.service_id;
+		this.bookings = (service.getBookings() != null || service.getBookings().isEmpty()) ? service.getBookings() : this.bookings;
 	}
 	
 	

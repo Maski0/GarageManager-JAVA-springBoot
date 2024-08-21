@@ -87,4 +87,12 @@ public class Payment {
 				+ paymentStatus + "]";
 	}
 
+	public void UpdateValues(Payment payment) {
+		this.booking = (payment.getBooking() != null) ? payment.getBooking() : this.booking;
+		this.paymentDate = (payment.getPaymentDate() != null) ? payment.getPaymentDate() : this.paymentDate;
+		this.paymentAmount = (payment.getPaymentAmount() != null) ? payment.getPaymentAmount() : this.paymentAmount;
+		this.paymentMethod = (payment.getPaymentMethod() != null) ? payment.getPaymentMethod() : this.paymentMethod;
+		this.paymentStatus = (payment.getPaymentStatus() != null) ? payment.getPaymentStatus() : this.paymentStatus;
+	}
+
 }
