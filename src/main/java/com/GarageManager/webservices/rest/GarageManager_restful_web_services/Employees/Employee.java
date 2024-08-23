@@ -8,6 +8,7 @@ import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Boo
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Email;
@@ -22,7 +23,7 @@ public class Employee {
 	}
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer employee_id; 
 	
 	@Size(min=3, max=30,message = "Name Should have Atleast 3 characters")
