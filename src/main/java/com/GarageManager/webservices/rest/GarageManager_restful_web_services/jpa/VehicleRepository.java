@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
 
-public interface VehicalRepository extends JpaRepository<Vehicle, Integer> {
+public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
 }

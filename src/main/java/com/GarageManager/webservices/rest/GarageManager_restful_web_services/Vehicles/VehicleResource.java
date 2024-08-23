@@ -16,7 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Customers.Customer;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.exception.NotFoundException;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa.CustomerRepository;
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa.VehicalRepository;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa.VehicleRepository;
 
 import jakarta.validation.Valid;
 
@@ -24,10 +24,10 @@ import jakarta.validation.Valid;
 
 public class VehicleResource {
 	
-	private VehicalRepository repository;
+	private VehicleRepository repository;
 	private CustomerRepository customerRepository;
 	
-	public VehicleResource(VehicalRepository repository, CustomerRepository customerRepository) {
+	public VehicleResource(VehicleRepository repository, CustomerRepository customerRepository) {
 		this.repository = repository;
 		this.customerRepository = customerRepository;
 	}

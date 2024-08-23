@@ -112,7 +112,7 @@ public class Customer {
 		this.address = (customer.getAddress() != null) ? customer.getAddress() : this.address;
 		this.e_mail = (customer.getE_mail() != null) ? customer.getE_mail() : this.e_mail;
 		this.phoneNumber = (customer.getPhoneNumber() != null) ? customer.getPhoneNumber() : this.phoneNumber;
-		this.vehicles = (customer.getVehicles() != null || customer.getVehicles().isEmpty() ) ? customer.getVehicles() : this.vehicles;
+		this.vehicles = (!customer.getVehicles().isEmpty() || customer.getVehicles() != null) ? customer.getVehicles() : this.vehicles;
 	}
 
 }

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
@@ -15,7 +16,7 @@ import jakarta.validation.constraints.NotNull;
 public class Service {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer service_id;
 	
 	@NotNull
@@ -79,7 +80,7 @@ public class Service {
 		this.serviceName = (service.getServiceName() != null) ? service.getServiceName() : this.serviceName;
 		this.serviceDescription = (service.getServiceDescription() != null) ? service.getServiceDescription() : this.serviceDescription;
 		this.serviceDuration = (service.getServiceDuration() != null) ? service.getServiceDuration() : this.service_id;
-		this.bookings = (service.getBookings() != null || service.getBookings().isEmpty()) ? service.getBookings() : this.bookings;
+		this.bookings = (!service.getBookings().isEmpty() || service.getBookings() != null) ? service.getBookings() : this.bookings;
 	}
 	
 	

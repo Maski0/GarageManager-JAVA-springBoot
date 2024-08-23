@@ -145,7 +145,7 @@ public class Employee {
 		this.e_mail = (employee.getE_mail() != null) ? employee.getE_mail() : this.e_mail;
 		this.ph_no = (employee.getPh_no() != null) ? employee.getPh_no() : this.ph_no;
 		this.date_of_Joining = (employee.getDate_of_Joining() != null) ? employee.getDate_of_Joining() : this.date_of_Joining;
-		this.bookings = (employee.getBookings() != null || employee.getBookings().isEmpty()) ? employee.getBookings() : this.bookings;
+		this.bookings = (!employee.getBookings().isEmpty() || employee.getBookings() != null) ? employee.getBookings() : this.bookings;
 	}
 	
 
