@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,14 +15,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "payment_id")
 public class Payment {
 	
 	@Id
 	@GeneratedValue
 	private Integer payment_id;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonBackReference("Booking-Payment")
+	//@JsonBackReference("Booking-Payment")
+	@ManyToOne()
 	@JoinColumn(name="booking_id")
 	private Booking booking;
 	
