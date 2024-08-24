@@ -57,6 +57,13 @@ public class EmployeeResource {
 		return ResponseEntity.created(location).build();
 	}
 	
+	// Create Employee
+		@PostMapping("/employees/test")
+		public Employee TestEmployy(@Valid @RequestBody Employee employee) {
+			System.out.println("Employee " + employee);
+			return employee;
+		}
+	
 	@PutMapping("/employees")
 	public Employee updateEmployee(@Valid @RequestBody Employee employee) {
 		Employee existingEmployee = repository.findById(employee.getEmployee_id()).orElseThrow(

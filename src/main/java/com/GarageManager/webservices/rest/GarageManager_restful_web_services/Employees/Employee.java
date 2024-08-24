@@ -4,6 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,6 +20,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "employee_id")
 public class Employee {
 	
 	protected Employee() {
@@ -40,7 +45,8 @@ public class Employee {
 	
 	private LocalDate date_of_Joining;
 	
-	@ManyToMany(mappedBy = "employees", fetch = FetchType.LAZY)
+//	@JsonIgnore
+	@ManyToMany(mappedBy = "employees")
     private List<Booking> bookings;
 	
 	
