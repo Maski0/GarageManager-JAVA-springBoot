@@ -4,11 +4,10 @@ import java.util.List;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Customers.Customer;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -17,14 +16,15 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "vehicle_id")
 public class Vehicle {
 	
 	@Id
 	@GeneratedValue
 	private Integer vehicle_id;
 	
-	@JsonBackReference("Customer-Vehicle")
-	@ManyToOne(fetch = FetchType.LAZY)
+	//@JsonBackReference("Customer-Vehicle")
+	@ManyToOne()
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
@@ -37,8 +37,8 @@ public class Vehicle {
 	@NotNull
 	private String VehiclePlateNumber;
 	
+	//@JsonManagedReference("Vehicle-Booking")
 	@OneToMany(mappedBy = "vehicle", orphanRemoval = true)
-	@JsonManagedReference("Vehicle-Booking")
 	private List<Booking> bookings;
 
 	public Integer getVehicle_id() {
