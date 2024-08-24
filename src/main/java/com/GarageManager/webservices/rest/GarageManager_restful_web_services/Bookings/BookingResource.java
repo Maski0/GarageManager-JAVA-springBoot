@@ -1,16 +1,15 @@
 package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.BookingCustomDTOs.CreateBookingDTO;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Employees.Employee;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Services.Service;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
@@ -20,7 +19,6 @@ import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa.ServiceRepository;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa.VehicleRepository;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 
 @RestController
@@ -32,7 +30,12 @@ public class BookingResource {
 	private ServiceRepository serviceRepository;
 	
 	
-	public BookingResource(BookingRepository repository, EmployeeRepository employeeRepository, VehicleRepository vehicleRepository, ServiceRepository serviceRepository) {
+	
+	public BookingResource(
+			BookingRepository repository, 
+			EmployeeRepository employeeRepository, 
+			VehicleRepository vehicleRepository, 
+			ServiceRepository serviceRepository) {
 		
 		this.repository = repository;
 		this.employeeRepository = employeeRepository;
@@ -52,7 +55,9 @@ public class BookingResource {
 			@PathVariable Integer Vehicle_ID, 
 			@PathVariable Integer Service_ID,
 			@PathVariable List<Integer> Employee_ids, 
-			@Valid @RequestBody Booking booking) {
+			@Valid @RequestBody CreateBookingDTO bookingDTO) {
+		
+		Booking booking = bookingDTO.covertToBooking();
 		
 		// Getting all the dependencies
 		Vehicle vehicle = vehicleRepository.findById(Vehicle_ID).orElseThrow(

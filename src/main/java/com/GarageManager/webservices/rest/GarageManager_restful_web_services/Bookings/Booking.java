@@ -3,12 +3,17 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bo
 import java.time.LocalDate;
 import java.util.List;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Employees.Employee;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Payments.Payment;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Services.Service;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -24,18 +29,20 @@ import jakarta.persistence.OneToMany;
 
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "booking_id")
 public class Booking {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer booking_id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	//@JsonBackReference("Vehicle-Booking")
+	@ManyToOne()
 	@JoinColumn(name="vehicle_id")
-	@JsonBackReference("Vehicle-Booking")
 	private Vehicle vehicle;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//@JsonManagedReference("Employee-Booking")
+	@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "booking_employee",
         joinColumns = @JoinColumn(name = "booking_id"),
@@ -43,8 +50,8 @@ public class Booking {
     )
 	private List<Employee> employees;
 	
-	@JsonBackReference("Service-Booking")
-	@ManyToOne(fetch = FetchType.LAZY)
+	//@JsonBackReference("Service-Booking")
+	@ManyToOne()
 	@JoinColumn(name="service_id")
 	private Service service;
 	
@@ -58,8 +65,8 @@ public class Booking {
 	
 	private Integer totalAmountDue;
 	
+	//@JsonManagedReference("Booking-Payment")
 	@OneToMany(mappedBy = "booking")
-	@JsonManagedReference("Booking-Payment")
 	private List<Payment> payments;
 
 	public Integer getBooking_id() {
