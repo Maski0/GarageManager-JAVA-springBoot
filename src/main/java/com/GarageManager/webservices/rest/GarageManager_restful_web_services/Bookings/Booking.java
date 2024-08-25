@@ -3,21 +3,15 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bo
 import java.time.LocalDate;
 import java.util.List;
 
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
-
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Employees.Employee;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Payments.Payment;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Services.Service;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;

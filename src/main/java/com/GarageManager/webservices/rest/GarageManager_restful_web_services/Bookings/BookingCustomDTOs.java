@@ -1,6 +1,7 @@
 package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 
 public class BookingCustomDTOs {
@@ -17,13 +18,12 @@ public class BookingCustomDTOs {
 		
 		private Integer totalAmountDue;
 		
-		public Booking covertToBooking() {
-			Booking booking = new Booking();
-			booking.setStart_date(start_date);
-			booking.setDelivery_date(delivery_date);
-			booking.setBookingStatus(bookingStatus);
-			booking.setServicePrice(servicePrice);
-			booking.setTotalAmountDue(totalAmountDue);
+		public Booking covertToBooking(Booking booking) {
+			Optional.ofNullable(start_date).ifPresent(booking::setStart_date);
+		    Optional.ofNullable(delivery_date).ifPresent(booking::setDelivery_date);
+		    Optional.ofNullable(bookingStatus).ifPresent(booking::setBookingStatus);
+		    Optional.ofNullable(servicePrice).ifPresent(booking::setServicePrice);
+		    Optional.ofNullable(totalAmountDue).ifPresent(booking::setTotalAmountDue);
 			return booking;
 		}
 
