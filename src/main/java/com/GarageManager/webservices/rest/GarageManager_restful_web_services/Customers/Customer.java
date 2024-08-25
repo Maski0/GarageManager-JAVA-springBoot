@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
