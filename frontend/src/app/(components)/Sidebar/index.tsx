@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/state";
-import { Layout, LucideIcon, Menu } from "lucide-react";
+import { Box, IndianRupee, Layout, LucideIcon, Menu, NotebookText, Users, Warehouse } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -67,12 +67,24 @@ const Sidebar = () => {
       </div>
       {/* Side bar Links */}
       <div className="flex-grow mt-8">
+
         <SidebarLink href="/dashboard" icon={Layout} lable="Dashboard" isCollapsed={isSidebarCollapsed} />
+
+        <SidebarLink href="/bookings" icon={NotebookText} lable="Bookings" isCollapsed={isSidebarCollapsed} />
+
+        <SidebarLink href="/accounting" icon={IndianRupee} lable="Accounting" isCollapsed={isSidebarCollapsed} />
+
+        <SidebarLink href="/customers" icon={Users} lable="Customers" isCollapsed={isSidebarCollapsed} />
+
+        <SidebarLink href="/inventory" icon={Box} lable="Inventory" isCollapsed={isSidebarCollapsed} />
+
+        <SidebarLink href="/garage" icon={Warehouse} lable="Garage" isCollapsed={isSidebarCollapsed} />
+
 
       </div>
 
       {/* Footer */}
-      <div>
+      <div className={`${isSidebarCollapsed ? "hidden" : "block"} mb-10`}>
         <p className="text-center text-xs text-gray-500">&copy; 2024 Maski</p>
       </div>
 
