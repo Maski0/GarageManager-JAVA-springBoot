@@ -10,7 +10,7 @@ Spring-JPA Hibernate, ~AWS Postgresql~ Azure MS sql (cus it had free tier😅), 
 
 ## Backend
 
-[BackEnd Docs](backend/README.md)
+[BackEnd Docs](backend)
 
 
 
