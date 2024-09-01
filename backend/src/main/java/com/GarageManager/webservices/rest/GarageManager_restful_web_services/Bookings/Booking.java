@@ -7,7 +7,9 @@ import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Emp
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Payments.Payment;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Services.Service;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
@@ -23,19 +25,18 @@ import jakarta.persistence.OneToMany;
 
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "booking_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "bookingId")
 public class Booking {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer booking_id;
+	private Integer bookingId;
 	
-	//@JsonBackReference("Vehicle-Booking")
+	@JsonBackReference("Vehicle-Booking")
 	@ManyToOne()
 	@JoinColumn(name="vehicle_id")
 	private Vehicle vehicle;
 	
-	//@JsonManagedReference("Employee-Booking")
 	@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "booking_employee",
@@ -44,7 +45,7 @@ public class Booking {
     )
 	private List<Employee> employees;
 	
-	//@JsonBackReference("Service-Booking")
+	@JsonBackReference("Service-Booking")
 	@ManyToOne()
 	@JoinColumn(name="service_id")
 	private Service service;
@@ -59,16 +60,16 @@ public class Booking {
 	
 	private Integer totalAmountDue;
 	
-	//@JsonManagedReference("Booking-Payment")
+	@JsonManagedReference("Booking-Payment")
 	@OneToMany(mappedBy = "booking")
 	private List<Payment> payments;
 
-	public Integer getBooking_id() {
-		return booking_id;
+	public Integer getBookingId() {
+		return bookingId;
 	}
 
-	public void setBooking_id(Integer booking_id) {
-		this.booking_id = booking_id;
+	public void setBookingId(Integer booking_id) {
+		this.bookingId = booking_id;
 	}
 
 	public Vehicle getVehicle() {
@@ -145,7 +146,7 @@ public class Booking {
 
 	@Override
 	public String toString() {
-		return "Booking [booking_id=" + booking_id + ", vehicle=" + vehicle + ", employees=" + employees + ", service="
+		return "Booking [booking_id=" + bookingId + ", vehicle=" + vehicle + ", employees=" + employees + ", service="
 				+ service + ", start_date=" + start_date + ", delivery_date=" + delivery_date + ", bookingStatus="
 				+ bookingStatus + ", servicePrice=" + servicePrice + ", totalAmountDue=" + totalAmountDue
 				+ ", payments=" + payments + "]";

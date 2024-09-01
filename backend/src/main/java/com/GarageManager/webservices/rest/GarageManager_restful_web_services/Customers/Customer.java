@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -35,8 +35,8 @@ public class Customer {
 	@NotNull
 	private Long phoneNumber;
 	
-	//@JsonManagedReference("Customer-Vehicle")
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference("Customer-Vehicle")
+	@OneToMany(mappedBy = "customer")
 	private List<Vehicle> vehicles;
 
 	public Customer(Integer customer_id,

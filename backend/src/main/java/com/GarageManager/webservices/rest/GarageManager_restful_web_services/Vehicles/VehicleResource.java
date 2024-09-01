@@ -1,7 +1,6 @@
 package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -37,10 +36,7 @@ public class VehicleResource {
 	// Get All Vehicles
 	@GetMapping("/vehicles")
 	public List<Vehicle> getAllVehicles(){
-		List<Vehicle> vehicles = new ArrayList<Vehicle>();
-		vehicles = repository.findAll();
-		System.out.println(vehicles);
-		return vehicles;
+		return repository.findAll();
 	}
 	
 	// Create A Vehicle for the Customer ID

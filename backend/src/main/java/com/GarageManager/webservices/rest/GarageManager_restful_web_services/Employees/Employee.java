@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
@@ -42,7 +43,7 @@ public class Employee {
 	
 	private LocalDate date_of_Joining;
 	
-//	@JsonIgnore
+	@JsonIgnore
 	@ManyToMany(mappedBy = "employees")
     private List<Booking> bookings;
 	

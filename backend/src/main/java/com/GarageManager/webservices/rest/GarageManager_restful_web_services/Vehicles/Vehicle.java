@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Customers.Customer;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
@@ -23,7 +25,7 @@ public class Vehicle {
 	@GeneratedValue
 	private Integer vehicle_id;
 	
-	//@JsonBackReference("Customer-Vehicle")
+	@JsonBackReference("Customer-Vehicle")
 	@ManyToOne()
 	@JoinColumn(name="customer_id")
 	private Customer customer;
@@ -37,7 +39,7 @@ public class Vehicle {
 	@NotNull
 	private String VehiclePlateNumber;
 	
-	//@JsonManagedReference("Vehicle-Booking")
+	@JsonManagedReference("Vehicle-Booking")
 	@OneToMany(mappedBy = "vehicle", orphanRemoval = true)
 	private List<Booking> bookings;
 

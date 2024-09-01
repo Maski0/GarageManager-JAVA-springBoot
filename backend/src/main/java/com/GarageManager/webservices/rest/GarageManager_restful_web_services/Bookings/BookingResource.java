@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,9 +52,25 @@ public class BookingResource {
 	}
 	
 	@GetMapping("/bookings")
-	public List<Booking> getAllBookings(){
+	public List<Booking> getAllBookings(
+			@RequestParam(required = false) Optional<Integer> afterId,
+			@RequestParam(required = false) Optional<Integer> pageNo,
+			@RequestParam(required = false) Optional<Integer> pageSize){
+		
+		if(afterId.isPresent()) {
+			return repository.findBybookingIdGreaterThan(afterId.get());
+		}
+		
+		if(pageNo.isPresent() && pageSize.isPresent()) {
+			PageRequest pageRequest = PageRequest.of(pageNo.get(), pageSize.get(), Sort.by("bookingId").descending());
+			Slice<Booking> booking = repository.findAll(pageRequest);
+			return booking.getContent();
+		}
+		
 		return repository.findAll();
 	}
+	
+	
 	
 	@GetMapping("/bookings/{booking_ID}")
 	public Booking getBookingByID(@PathVariable Integer booking_ID) {

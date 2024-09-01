@@ -3,6 +3,7 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Pa
 import java.time.LocalDate;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -19,7 +20,7 @@ public class Payment {
 	@Id
 	@GeneratedValue
 	private Integer payment_id;
-	//@JsonBackReference("Booking-Payment")
+	@JsonBackReference("Booking-Payment")
 	@ManyToOne()
 	@JoinColumn(name="booking_id")
 	private Booking booking;
