@@ -39,7 +39,7 @@ public class Employee {
 	private String e_mail;
 	
 	@NotNull
-	private Long ph_no;
+	private Long phoneNumber;
 	
 	private LocalDate date_of_Joining;
 	
@@ -59,7 +59,7 @@ public class Employee {
 		this.employee_name = employee_name;
 		this.address = address;
 		this.e_mail = e_mail;
-		this.ph_no = ph_no;
+		this.phoneNumber = ph_no;
 		this.date_of_Joining = date_of_Joining;
 	}
 
@@ -104,13 +104,13 @@ public class Employee {
 	}
 
 
-	public Long getPh_no() {
-		return ph_no;
+	public Long getPhoneNumber() {
+		return phoneNumber;
 	}
 
 
-	public void setPh_no(Long ph_no) {
-		this.ph_no = ph_no;
+	public void setPhoneNumber(Long ph_no) {
+		this.phoneNumber = ph_no;
 	}
 
 
@@ -127,7 +127,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [employee_id=" + employee_id + ", employee_name=" + employee_name + ", address=" + address
-				+ ", e_mail=" + e_mail + ", ph_no=" + ph_no + ", date_of_Joining=" + date_of_Joining + ", bookings="
+				+ ", e_mail=" + e_mail + ", ph_no=" + phoneNumber + ", date_of_Joining=" + date_of_Joining + ", bookings="
 				+ bookings + "]";
 	}
 
@@ -147,7 +147,7 @@ public class Employee {
 		this.employee_name = (employee.getEmployee_name() != null) ? employee.getEmployee_name() : this.employee_name;
 		this.address = (employee.getAddress() != null) ? employee.getAddress() : this.address;
 		this.e_mail = (employee.getE_mail() != null) ? employee.getE_mail() : this.e_mail;
-		this.ph_no = (employee.getPh_no() != null) ? employee.getPh_no() : this.ph_no;
+		this.phoneNumber = (employee.getPhoneNumber() != null) ? employee.getPhoneNumber() : this.phoneNumber;
 		this.date_of_Joining = (employee.getDate_of_Joining() != null) ? employee.getDate_of_Joining() : this.date_of_Joining;
 		this.bookings = (!employee.getBookings().isEmpty() || employee.getBookings() != null) ? employee.getBookings() : this.bookings;
 	}
