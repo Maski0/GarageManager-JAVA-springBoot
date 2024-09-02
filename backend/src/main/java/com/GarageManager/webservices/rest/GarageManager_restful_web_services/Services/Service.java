@@ -3,8 +3,8 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Se
 import java.util.List;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
@@ -30,7 +30,7 @@ public class Service {
 	private Integer serviceDuration;
 	
 	@OneToMany(mappedBy = "service", orphanRemoval = true)
-	@JsonManagedReference("Service-Booking")
+	@JsonBackReference("Service-Booking")
 	private List<Booking> bookings;
 
 	public Integer getService_id() {
