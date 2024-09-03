@@ -3,6 +3,7 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bo
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.BookingCustomDTOs.CreateBookingDTO;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.BookingCustomDTOs.GetBookingDTO;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Employees.Employee;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Services.Service;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
@@ -52,32 +54,37 @@ public class BookingResource {
 	}
 	
 	@GetMapping("/bookings")
-	public List<Booking> getAllBookings(
+	public List<GetBookingDTO> getAllBookings(
 			@RequestParam(required = false) Optional<Integer> afterId,
 			@RequestParam(required = false) Optional<Integer> pageNo,
 			@RequestParam(required = false) Optional<Integer> pageSize){
 		
 		if(afterId.isPresent()) {
-			return repository.findBybookingIdGreaterThan(afterId.get());
+			return repository.findBybookingIdGreaterThan(afterId.get()).stream()
+					.map(GetBookingDTO::fromEntity)
+					.collect(Collectors.toList());
 		}
 		
 		if(pageNo.isPresent() && pageSize.isPresent()) {
 			PageRequest pageRequest = PageRequest.of(pageNo.get(), pageSize.get(), Sort.by("bookingId").descending());
 			Slice<Booking> booking = repository.findAll(pageRequest);
-			return booking.getContent();
+			return booking.getContent().stream()
+					.map(GetBookingDTO::fromEntity)
+					.collect(Collectors.toList());
 		}
 		
-		return repository.findAll();
+		return repository.findAll().stream()
+				.map(GetBookingDTO::fromEntity)
+				.collect(Collectors.toList());
 	}
 	
 	
-	
 	@GetMapping("/bookings/{booking_ID}")
-	public Booking getBookingByID(@PathVariable Integer booking_ID) {
+	public GetBookingDTO getBookingByID(@PathVariable Integer booking_ID) {
 		Booking existingBooking = repository.findById(booking_ID).orElseThrow(
 				() -> new NotFoundException("Booking_ID: "+ booking_ID));
 		
-		return existingBooking;
+		return GetBookingDTO.fromEntity(existingBooking);
 	}
 	
 	

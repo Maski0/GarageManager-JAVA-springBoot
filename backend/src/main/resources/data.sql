@@ -48,6 +48,9 @@ insert into booking_employee (booking_id, employee_id)
 values (2,3);
 
 insert into booking_employee (booking_id, employee_id)
+values (1,2);
+
+insert into booking_employee (booking_id, employee_id)
 values (3,2);
 
 
