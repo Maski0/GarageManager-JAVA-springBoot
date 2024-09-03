@@ -3,19 +3,18 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Ve
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.BookingCustomDTOs.GetBookingDTO;
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Customers.CustomerCustomDTOs.GetCustomerDTO;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 
 public class VehicleCustomDTOs {
 	
 	public static class GetVehicleDTO {
 		
 		private Integer vehicleId;
-	    private GetCustomerDTO customer;
+	    private Integer customer;
 	    private String make;
 	    private String model;
 	    private String vehiclePlateNumber;
-	    private List<GetBookingDTO> bookings;
+	    private List<Integer> bookings;
 	    
 	    
 	    public static GetVehicleDTO fromEntity(Vehicle vehicle) {
@@ -25,11 +24,11 @@ public class VehicleCustomDTOs {
 	        dto.setModel(vehicle.getModel());
 	        dto.setVehiclePlateNumber(vehicle.getVehiclePlateNumber());
 	        
-	        dto.setCustomerId(GetCustomerDTO.fromEntity(vehicle.getCustomer()));
+	        dto.setCustomerId(vehicle.getCustomer().getCustomer_id());
 	        
 	        if (vehicle.getBookings() != null) {
 	            dto.setBookings(vehicle.getBookings().stream()
-	                            .map(GetBookingDTO::fromEntity)
+	                            .map(Booking::getBookingId)
 	                            .collect(Collectors.toList()));
 	        }
 	        
@@ -47,12 +46,12 @@ public class VehicleCustomDTOs {
 		}
 
 
-		public GetCustomerDTO getCustomer() {
+		public Integer getCustomer() {
 			return customer;
 		}
 
 
-		public void setCustomerId(GetCustomerDTO customerId) {
+		public void setCustomerId(Integer customerId) {
 			this.customer = customerId;
 		}
 
@@ -87,12 +86,12 @@ public class VehicleCustomDTOs {
 		}
 
 
-		public List<GetBookingDTO> getBookings() {
+		public List<Integer> getBookings() {
 			return bookings;
 		}
 
 
-		public void setBookings(List<GetBookingDTO> bookings) {
+		public void setBookings(List<Integer> bookings) {
 			this.bookings = bookings;
 		}
 		

@@ -3,7 +3,7 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Cu
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.VehicleCustomDTOs.GetVehicleDTO;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.Vehicle;
 
 public class CustomerCustomDTOs {
 	
@@ -14,7 +14,7 @@ public class CustomerCustomDTOs {
 	    private String address;
 	    private String email;
 	    private Long phoneNumber;
-	    private List<GetVehicleDTO> vehicles;
+	    private List<Integer> vehicles;
 	    
 	    public static GetCustomerDTO fromEntity(Customer customer) {
 	    	GetCustomerDTO dto = new GetCustomerDTO();
@@ -25,7 +25,7 @@ public class CustomerCustomDTOs {
 	        dto.phoneNumber = customer.getPhoneNumber();
 	        
 	        dto.vehicles = customer.getVehicles().stream()
-	                               .map(GetVehicleDTO::fromEntity)
+	                               .map(Vehicle::getVehicle_id)
 	                               .collect(Collectors.toList());
 	        return dto;
 	    }
@@ -70,11 +70,11 @@ public class CustomerCustomDTOs {
 			this.phoneNumber = phoneNumber;
 		}
 
-		public List<GetVehicleDTO> getVehicles() {
+		public List<Integer> getVehicles() {
 			return vehicles;
 		}
 
-		public void setVehicles(List<GetVehicleDTO> vehicles) {
+		public void setVehicles(List<Integer> vehicles) {
 			this.vehicles = vehicles;
 		}
 		

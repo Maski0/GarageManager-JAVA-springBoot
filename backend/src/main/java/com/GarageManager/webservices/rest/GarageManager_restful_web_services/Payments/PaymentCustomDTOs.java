@@ -2,8 +2,6 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Pa
 
 import java.time.LocalDate;
 
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.BookingCustomDTOs.GetBookingDTO;
-
 public class PaymentCustomDTOs {
 	
 	public static class GetPaymentDTO {
@@ -12,7 +10,7 @@ public class PaymentCustomDTOs {
 		 private Integer paymentAmount;
 		 private String paymentMethod;
 		 private String paymentStatus;
-		 private GetBookingDTO booking;
+		 private Integer booking;
 		 
 		 
 		 public static GetPaymentDTO fromEntity(Payment payment) {
@@ -22,7 +20,7 @@ public class PaymentCustomDTOs {
 		        dto.setPaymentAmount(payment.getPaymentAmount());
 		        dto.setPaymentMethod(payment.getPaymentMethod());
 		        dto.setPaymentStatus(payment.getPaymentStatus());
-		        dto.setBooking(GetBookingDTO.fromEntity(payment.getBooking()));
+		        dto.setBooking(payment.getBooking().getBookingId());
 		        return dto;
 		    }
 
@@ -76,12 +74,12 @@ public class PaymentCustomDTOs {
 		}
 
 
-		public GetBookingDTO getBooking() {
+		public Integer getBooking() {
 			return booking;
 		}
 
 
-		public void setBooking(GetBookingDTO booking) {
+		public void setBooking(Integer booking) {
 			this.booking = booking;
 		}
 		 

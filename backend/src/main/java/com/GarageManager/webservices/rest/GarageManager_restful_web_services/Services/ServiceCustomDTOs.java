@@ -3,7 +3,7 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Se
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.BookingCustomDTOs.GetBookingDTO;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 
 public class ServiceCustomDTOs {
 	
@@ -13,7 +13,7 @@ public class ServiceCustomDTOs {
 	    private String serviceName;
 	    private String serviceDescription;
 	    private Integer serviceDuration;
-	    private List<GetBookingDTO> bookings;
+	    private List<Integer> bookings;
 	    
 	    public static GetServiceDTO fromEntity(Service service) {
 	    	GetServiceDTO dto = new GetServiceDTO();
@@ -24,7 +24,7 @@ public class ServiceCustomDTOs {
 	        
 	        if (service.getBookings() != null) {
 	            dto.setBookings(service.getBookings().stream()
-	                .map(GetBookingDTO::fromEntity)
+	                .map(Booking::getBookingId)
 	                .collect(Collectors.toList()));
 	        }
 	        
@@ -63,11 +63,11 @@ public class ServiceCustomDTOs {
 			this.serviceDuration = serviceDuration;
 		}
 
-		public List<GetBookingDTO> getBookings() {
+		public List<Integer> getBookings() {
 			return bookings;
 		}
 
-		public void setBookings(List<GetBookingDTO> bookings) {
+		public void setBookings(List<Integer> bookings) {
 			this.bookings = bookings;
 		}
 	}

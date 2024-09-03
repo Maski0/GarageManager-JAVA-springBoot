@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.BookingCustomDTOs.GetBookingDTO;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Bookings.Booking;
 
 public class EmployeeCustomDTOs {
 	
@@ -17,7 +17,7 @@ public class EmployeeCustomDTOs {
 	    private Long phoneNumber;
 	    private LocalDate dateOfJoining;
 	    
-	    private List<GetBookingDTO> bookings;
+	    private List<Integer> bookings;
 	    
 	    public static GetEmployeeDTO fromEntity(Employee employee) {
 	    	GetEmployeeDTO dto = new GetEmployeeDTO();
@@ -29,7 +29,7 @@ public class EmployeeCustomDTOs {
 	        dto.setDateOfJoining(employee.getDate_of_Joining());
 	        
 	        dto.setBookings(employee.getBookings().stream()
-	        		.map(GetBookingDTO::fromEntity)
+	        		.map(Booking::getBookingId)
 	        		.collect(Collectors.toList()));
 	        
 	        return dto;
@@ -83,11 +83,11 @@ public class EmployeeCustomDTOs {
 			this.dateOfJoining = dateOfJoining;
 		}
 
-		public List<GetBookingDTO> getBookings() {
+		public List<Integer> getBookings() {
 			return bookings;
 		}
 
-		public void setBookings(List<GetBookingDTO> bookings) {
+		public void setBookings(List<Integer> bookings) {
 			this.bookings = bookings;
 		}
 		

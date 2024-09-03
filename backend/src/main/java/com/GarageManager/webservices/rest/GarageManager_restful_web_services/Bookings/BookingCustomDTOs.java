@@ -5,10 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Employees.EmployeeCustomDTOs.GetEmployeeDTO;
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Payments.PaymentCustomDTOs.GetPaymentDTO;
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Services.ServiceCustomDTOs.GetServiceDTO;
-import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.VehicleCustomDTOs.GetVehicleDTO;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Employees.Employee;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Payments.Payment;
 
 
 public class BookingCustomDTOs {
@@ -85,15 +83,15 @@ public class BookingCustomDTOs {
 	public static class GetBookingDTO {
 		
 		private Integer bookingId;
-		private GetVehicleDTO vehicle;
-		private GetServiceDTO service;
-		private List<GetEmployeeDTO> employees;
+		private Integer vehicle;
+		private Integer service;
+		private List<Integer> employees;
 		private LocalDate start_date;
 		private LocalDate delivery_date;
 		private String bookingStatus;
 		private Integer servicePrice;
 		private Integer totalAmountDue;
-		private List<GetPaymentDTO> payments;
+		private List<Integer> payments;
 	
 		public Integer getBookingId() {
 			return bookingId;
@@ -101,22 +99,22 @@ public class BookingCustomDTOs {
 		public void setBookingId(Integer bookingId) {
 			this.bookingId = bookingId;
 		}
-		public GetVehicleDTO getVehicle() {
+		public Integer getVehicle() {
 			return vehicle;
 		}
-		public void setVehicle(GetVehicleDTO vehicle) {
+		public void setVehicle(Integer vehicle) {
 			this.vehicle = vehicle;
 		}
-		public List<GetEmployeeDTO> getEmployees() {
+		public List<Integer> getEmployees() {
 			return employees;
 		}
-		public void setEmployees(List<GetEmployeeDTO> employees) {
+		public void setEmployees(List<Integer> employees) {
 			this.employees = employees;
 		}
-		public GetServiceDTO getService() {
+		public Integer getService() {
 			return service;
 		}
-		public void setService(GetServiceDTO service) {
+		public void setService(Integer service) {
 			this.service = service;
 		}
 		public LocalDate getStart_date() {
@@ -149,10 +147,10 @@ public class BookingCustomDTOs {
 		public void setTotalAmountDue(Integer totalAmountDue) {
 			this.totalAmountDue = totalAmountDue;
 		}
-		public List<GetPaymentDTO> getPayments() {
+		public List<Integer> getPayments() {
 			return payments;
 		}
-		public void setPayments(List<GetPaymentDTO> payments) {
+		public void setPayments(List<Integer> payments) {
 			this.payments = payments;
 		}
 		
@@ -165,13 +163,13 @@ public class BookingCustomDTOs {
 			dto.setStart_date(booking.getStart_date());
 			dto.setTotalAmountDue(booking.getTotalAmountDue());
 			
-			dto.setService(GetServiceDTO.fromEntity(booking.getService()));
-			dto.setVehicle(GetVehicleDTO.fromEntity(booking.getVehicle()));
+			dto.setService(booking.getService().getService_id());
+			dto.setVehicle(booking.getVehicle().getVehicle_id());
 			dto.setEmployees(booking.getEmployees().stream()
-					.map(GetEmployeeDTO::fromEntity)
+					.map(Employee::getEmployee_id)
 					.collect(Collectors.toList()));
 			dto.setPayments(booking.getPayments().stream()
-					.map(GetPaymentDTO::fromEntity)
+					.map(Payment::getPayment_id)
 					.collect(Collectors.toList()));
 			
 			return dto;
