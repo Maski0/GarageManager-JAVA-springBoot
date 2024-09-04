@@ -2,7 +2,12 @@ package com.GarageManager.webservices.rest.GarageManager_restful_web_services.Ve
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,10 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Customers.Customer;
+import com.GarageManager.webservices.rest.GarageManager_restful_web_services.Vehicles.VehicleCustomDTOs.GetVehicleDTO;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.exception.NotFoundException;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa.CustomerRepository;
 import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa.VehicleRepository;
@@ -35,8 +42,21 @@ public class VehicleResource {
 	
 	// Get All Vehicles
 	@GetMapping("/vehicles")
-	public List<Vehicle> getAllVehicles(){
-		return repository.findAll();
+	public List<GetVehicleDTO> getAllVehicles(
+			@RequestParam(required = false) Optional<Integer> pageNo,
+			@RequestParam(required = false) Optional<Integer> pageSize){
+		
+		if(pageNo.isPresent() && pageSize.isPresent()) {
+			PageRequest pageRequest = PageRequest.of(pageNo.get(), pageSize.get(), Sort.by("bookingId").descending());
+			Slice<Vehicle> vehicle = repository.findAll(pageRequest);
+			return vehicle.getContent().stream()
+					.map(GetVehicleDTO::fromEntity)
+					.collect(Collectors.toList());
+		}
+		
+		return repository.findAll().stream()
+				.map(GetVehicleDTO::fromEntity)
+				.collect(Collectors.toList());
 	}
 	
 	// Create A Vehicle for the Customer ID
