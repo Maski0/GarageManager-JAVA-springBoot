@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export type Bookings = booking[];
-
 export interface booking {
   bookingId: number | null;
   vehicle: number | null;
@@ -69,15 +68,40 @@ export interface Vehicle {
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
   reducerPath: "api",
-  tagTypes: ["bookings"],
+  tagTypes: ["bookings","employees", "vehicles", "services", "customers", "payments"],
   endpoints: (build) => ({
     getBookings: build.query<Bookings, void>({
       query: () => "/bookings",
       providesTags: ["bookings"],
+    }),
+    getEmployees: build.query<Employees, void>({
+      query: () => "/employees",
+      providesTags: ["employees"],
+    }),
+    getVehicles: build.query<Vehicles, void>({
+      query: () => "/vehicles",
+      providesTags: ["vehicles"],
+    }),
+    getServices: build.query<Services, void>({
+      query: () => "/services",
+      providesTags: ["services"],
+    }),
+    getCustomers: build.query<Customers, void>({
+      query: () => "/customers",
+      providesTags: ["customers"],
+    }),
+    getPayments: build.query<Payments, void>({
+      query: () => "/payments",
+      providesTags: ["payments"],
     }),
   }),
 });
 
 export const {
     useGetBookingsQuery,
+    useGetEmployeesQuery,
+    useGetCustomersQuery,
+    useGetServicesQuery,
+    useGetVehiclesQuery,
+    useGetPaymentsQuery
 } = api;
