@@ -56,8 +56,8 @@ public class PaymentResource {
 	
 	@PutMapping("/payments")
 	public Payment updatePayment(@Valid @RequestBody Payment payment) {
-		Payment existingPayment = repository.findById(payment.getPayment_id()).orElseThrow(
-				() -> new NotFoundException("Payment ID: "+ payment.getPayment_id()));
+		Payment existingPayment = repository.findById(payment.getPaymentId()).orElseThrow(
+				() -> new NotFoundException("Payment ID: "+ payment.getPaymentId()));
 		
 		existingPayment.UpdateValues(payment);
 		return repository.save(existingPayment);

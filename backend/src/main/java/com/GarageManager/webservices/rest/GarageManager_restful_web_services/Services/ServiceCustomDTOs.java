@@ -17,7 +17,7 @@ public class ServiceCustomDTOs {
 	    
 	    public static GetServiceDTO fromEntity(Service service) {
 	    	GetServiceDTO dto = new GetServiceDTO();
-	        dto.setServiceId(service.getService_id());
+	        dto.setServiceId(service.getServiceId());
 	        dto.setServiceName(service.getServiceName());
 	        dto.setServiceDescription(service.getServiceDescription());
 	        dto.setServiceDuration(service.getServiceDuration());

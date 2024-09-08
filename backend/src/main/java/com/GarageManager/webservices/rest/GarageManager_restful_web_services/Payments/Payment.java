@@ -14,15 +14,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "payment_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "paymentId")
 public class Payment {
 	
 	@Id
 	@GeneratedValue
-	private Integer payment_id;
+	private Integer paymentId;
 	@JsonBackReference("Booking-Payment")
 	@ManyToOne()
-	@JoinColumn(name="booking_id")
+	@JoinColumn(name="bookingId")
 	private Booking booking;
 	
 	private LocalDate paymentDate;
@@ -33,12 +33,12 @@ public class Payment {
 	
 	private String paymentStatus;
 
-	public Integer getPayment_id() {
-		return payment_id;
+	public Integer getPaymentId() {
+		return paymentId;
 	}
 
-	public void setPayment_id(Integer payment_id) {
-		this.payment_id = payment_id;
+	public void setPaymentId(Integer paymentId) {
+		this.paymentId = paymentId;
 	}
 
 	public Booking getBooking() {
@@ -83,7 +83,7 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [payment_id=" + payment_id + ", booking=" + booking + ", paymentDate=" + paymentDate
+		return "Payment [payment_id=" + paymentId + ", booking=" + booking + ", paymentDate=" + paymentDate
 				+ ", paymentAmount=" + paymentAmount + ", paymentMethod=" + paymentMethod + ", paymentStatus="
 				+ paymentStatus + "]";
 	}

@@ -56,14 +56,14 @@ public class ServiceResource {
 	@PostMapping("/services")
 	public ResponseEntity<Service> createService(@Valid @RequestBody Service service){
 		Service saveService = repository.save(service);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{serviceID}").buildAndExpand(saveService.getService_id()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{serviceID}").buildAndExpand(saveService.getServiceId()).toUri();
 		return ResponseEntity.created(location).build();
 	}
 	
 	@PutMapping("/services")
 	public Service updateService(@Valid @RequestBody Service service) {
-		Service existingService = repository.findById(service.getService_id()).orElseThrow(
-				() -> new NotFoundException("Service ID: "+ service.getService_id()));
+		Service existingService = repository.findById(service.getServiceId()).orElseThrow(
+				() -> new NotFoundException("Service ID: "+ service.getServiceId()));
 		existingService.UpdateValues(service);
 		return repository.save(existingService);
 	}

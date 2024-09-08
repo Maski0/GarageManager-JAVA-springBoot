@@ -19,12 +19,12 @@ public class VehicleCustomDTOs {
 	    
 	    public static GetVehicleDTO fromEntity(Vehicle vehicle) {
 	    	GetVehicleDTO dto = new GetVehicleDTO();
-	        dto.setVehicleId(vehicle.getVehicle_id());
+	        dto.setVehicleId(vehicle.getVehicleId());
 	        dto.setMake(vehicle.getMake());
 	        dto.setModel(vehicle.getModel());
 	        dto.setVehiclePlateNumber(vehicle.getVehiclePlateNumber());
 	        
-	        dto.setCustomerId(vehicle.getCustomer().getCustomer_id());
+	        dto.setCustomerId(vehicle.getCustomer().getCustomerId());
 	        
 	        if (vehicle.getBookings() != null) {
 	            dto.setBookings(vehicle.getBookings().stream()

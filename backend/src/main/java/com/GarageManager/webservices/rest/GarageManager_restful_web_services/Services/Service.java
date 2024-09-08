@@ -20,7 +20,7 @@ public class Service {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer service_id;
+	private Integer serviceId;
 	
 	@NotNull
 	private String serviceName;
@@ -33,12 +33,12 @@ public class Service {
 	@JsonBackReference("Service-Booking")
 	private List<Booking> bookings;
 
-	public Integer getService_id() {
-		return service_id;
+	public Integer getServiceId() {
+		return serviceId;
 	}
 
-	public void setService_id(Integer service_id) {
-		this.service_id = service_id;
+	public void setServiceId(Integer serviceId) {
+		this.serviceId = serviceId;
 	}
 
 	public String getServiceName() {
@@ -75,14 +75,14 @@ public class Service {
 
 	@Override
 	public String toString() {
-		return "Service [service_id=" + service_id + ", serviceName=" + serviceName + ", serviceDescription="
+		return "Service [service_id=" + serviceId + ", serviceName=" + serviceName + ", serviceDescription="
 				+ serviceDescription + ", servicDuration=" + serviceDuration + ", bookings=" + bookings + "]";
 	}
 
 	public void UpdateValues(Service service) {
 		this.serviceName = (service.getServiceName() != null) ? service.getServiceName() : this.serviceName;
 		this.serviceDescription = (service.getServiceDescription() != null) ? service.getServiceDescription() : this.serviceDescription;
-		this.serviceDuration = (service.getServiceDuration() != null) ? service.getServiceDuration() : this.service_id;
+		this.serviceDuration = (service.getServiceDuration() != null) ? service.getServiceDuration() : this.serviceId;
 		this.bookings = (!service.getBookings().isEmpty() || service.getBookings() != null) ? service.getBookings() : this.bookings;
 	}
 	

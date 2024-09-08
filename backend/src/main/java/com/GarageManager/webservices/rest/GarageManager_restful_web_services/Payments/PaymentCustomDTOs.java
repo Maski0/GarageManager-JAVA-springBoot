@@ -15,7 +15,7 @@ public class PaymentCustomDTOs {
 		 
 		 public static GetPaymentDTO fromEntity(Payment payment) {
 			 	GetPaymentDTO dto = new GetPaymentDTO();
-		        dto.setPaymentId(payment.getPayment_id());
+		        dto.setPaymentId(payment.getPaymentId());
 		        dto.setPaymentDate(payment.getPaymentDate());
 		        dto.setPaymentAmount(payment.getPaymentAmount());
 		        dto.setPaymentMethod(payment.getPaymentMethod());

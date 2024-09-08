@@ -28,7 +28,6 @@ import com.GarageManager.webservices.rest.GarageManager_restful_web_services.jpa
 import jakarta.validation.Valid;
 
 @RestController
-
 public class VehicleResource {
 	
 	private VehicleRepository repository;
@@ -47,7 +46,7 @@ public class VehicleResource {
 			@RequestParam(required = false) Optional<Integer> pageSize){
 		
 		if(pageNo.isPresent() && pageSize.isPresent()) {
-			PageRequest pageRequest = PageRequest.of(pageNo.get(), pageSize.get(), Sort.by("bookingId").descending());
+			PageRequest pageRequest = PageRequest.of(pageNo.get(), pageSize.get(), Sort.by("vehicleId").descending());
 			Slice<Vehicle> vehicle = repository.findAll(pageRequest);
 			return vehicle.getContent().stream()
 					.map(GetVehicleDTO::fromEntity)
@@ -68,14 +67,14 @@ public class VehicleResource {
 		vehicle.setCustomer(customer);
 		Vehicle saveVehicle = repository.save(vehicle);
 		
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{employeeID}").buildAndExpand(saveVehicle.getVehicle_id()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{employeeID}").buildAndExpand(saveVehicle.getVehicleId()).toUri();
 		return ResponseEntity.created(location).build();
 	}
 	
 	@PutMapping("/vehicles")
 	public Vehicle updateVehicle(@Valid @RequestBody Vehicle vehicle) {
-		Vehicle exisitingVehicle = repository.findById(vehicle.getVehicle_id()).orElseThrow(
-				() -> new NotFoundException("Vehicle ID: "+ vehicle.getVehicle_id()));
+		Vehicle exisitingVehicle = repository.findById(vehicle.getVehicleId()).orElseThrow(
+				() -> new NotFoundException("Vehicle ID: "+ vehicle.getVehicleId()));
 		exisitingVehicle.UpdateValues(vehicle);
 		return repository.save(exisitingVehicle);
 	}

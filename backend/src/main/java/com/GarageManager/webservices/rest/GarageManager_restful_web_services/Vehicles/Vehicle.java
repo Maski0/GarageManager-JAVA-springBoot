@@ -17,16 +17,16 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "vehicle_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "vehicleId")
 public class Vehicle {
 	
 	@Id
 	@GeneratedValue
-	private Integer vehicle_id;
+	private Integer vehicleId;
 	
 	@JsonBackReference("Customer-Vehicle")
 	@ManyToOne()
-	@JoinColumn(name="customer_id")
+	@JoinColumn(name="customerId")
 	private Customer customer;
 	
 	@NotNull
@@ -42,12 +42,12 @@ public class Vehicle {
 	@OneToMany(mappedBy = "vehicle", orphanRemoval = true)
 	private List<Booking> bookings;
 
-	public Integer getVehicle_id() {
-		return vehicle_id;
+	public Integer getVehicleId() {
+		return vehicleId;
 	}
 
-	public void setVehicle_id(Integer vehicle_id) {
-		this.vehicle_id = vehicle_id;
+	public void setVehicleId(Integer vehicleId) {
+		this.vehicleId = vehicleId;
 	}
 
 	public String getMake() {
@@ -92,7 +92,7 @@ public class Vehicle {
 	
 	@Override
 	public String toString() {
-		return "Vehicle [vehicle_id=" + vehicle_id + ", customer=" + customer + ", make=" + make + ", model=" + model
+		return "Vehicle [vehicle_id=" + vehicleId + ", customer=" + customer + ", make=" + make + ", model=" + model
 				+ ", VehiclePlateNumber=" + VehiclePlateNumber + ", bookings=" + bookings + "]";
 	}
 	
