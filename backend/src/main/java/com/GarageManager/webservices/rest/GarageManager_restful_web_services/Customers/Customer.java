@@ -16,12 +16,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customer_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
 public class Customer {
 	
 	@Id
 	@GeneratedValue
-	private Integer customer_id;
+	private Integer customerId;
 	
 	@Size(min=3, max=30,message = "Name Should have Atleast 3 characters")
 	private String customer_name;
@@ -39,24 +39,24 @@ public class Customer {
 	@OneToMany(mappedBy = "customer")
 	private List<Vehicle> vehicles;
 
-	public Customer(Integer customer_id,
+	public Customer(Integer customerId,
 			@Size(min = 3, max = 30, message = "Name Should have Atleast 3 characters") String customer_name,
 			@Size(max = 30, message = "Address Should Not have More than 30 characters") String address,
 			@Email(regexp = ".+[@].+[\\.].+") String e_mail, @NotNull long phoneNumber) {
 		super();
-		this.customer_id = customer_id;
+		this.customerId = customerId;
 		this.customer_name = customer_name;
 		this.address = address;
 		this.e_mail = e_mail;
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Integer getCustomer_id() {
-		return customer_id;
+	public Integer getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomer_id(Integer customer_id) {
-		this.customer_id = customer_id;
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getCustomer_name() {
@@ -101,7 +101,7 @@ public class Customer {
 	
 	@Override
 	public String toString() {
-		return "Customer [customer_id=" + customer_id + ", customer_name=" + customer_name + ", address=" + address
+		return "Customer [customer_id=" + customerId + ", customer_name=" + customer_name + ", address=" + address
 				+ ", e_mail=" + e_mail + ", ph_no=" + phoneNumber + "]";
 	}
 

@@ -23,7 +23,7 @@ public class EmployeeDaoService {
 	}
 	
 	public Employee save(Employee employee) {
-		employee.setEmployee_id(++userCount);
+		employee.setEmployeeId(++userCount);
 		employees.add(employee);
 		return employee;
 	}
@@ -34,11 +34,11 @@ public class EmployeeDaoService {
 	}
 	
 	public Employee GetEmployee(Integer employeeID) {
-		Predicate<? super Employee> predicate = employee -> employee.getEmployee_id().equals(employeeID);
+		Predicate<? super Employee> predicate = employee -> employee.getEmployeeId().equals(employeeID);
 		return employees.stream().filter(predicate).findFirst().orElse(null);
 	}
 	public void DeleteEmployee(Integer employeeID) {
-		Predicate<? super Employee> predicate = employee -> employee.getEmployee_id().equals(employeeID);
+		Predicate<? super Employee> predicate = employee -> employee.getEmployeeId().equals(employeeID);
 		employees.removeIf(predicate);
 	}
 

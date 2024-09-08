@@ -21,7 +21,7 @@ public class EmployeeCustomDTOs {
 	    
 	    public static GetEmployeeDTO fromEntity(Employee employee) {
 	    	GetEmployeeDTO dto = new GetEmployeeDTO();
-	        dto.setEmployeeId(employee.getEmployee_id());
+	        dto.setEmployeeId(employee.getEmployeeId());
 	        dto.setEmployeeName(employee.getEmployee_name());
 	        dto.setAddress(employee.getAddress());
 	        dto.setEmail(employee.getE_mail());

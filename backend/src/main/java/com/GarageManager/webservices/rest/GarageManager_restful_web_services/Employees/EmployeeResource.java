@@ -72,7 +72,7 @@ public class EmployeeResource {
 	@PostMapping("/employees")
 	public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
 		Employee saveEmployee = repository.save(employee);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{employeeID}").buildAndExpand(saveEmployee.getEmployee_id()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{employeeID}").buildAndExpand(saveEmployee.getEmployeeId()).toUri();
 		return ResponseEntity.created(location).build();
 	}
 	
@@ -85,8 +85,8 @@ public class EmployeeResource {
 	
 	@PutMapping("/employees")
 	public Employee updateEmployee(@Valid @RequestBody Employee employee) {
-		Employee existingEmployee = repository.findById(employee.getEmployee_id()).orElseThrow(
-				() -> new NotFoundException("Employee ID: "+ employee.getEmployee_id()));
+		Employee existingEmployee = repository.findById(employee.getEmployeeId()).orElseThrow(
+				() -> new NotFoundException("Employee ID: "+ employee.getEmployeeId()));
 		existingEmployee.UpdateValues(employee);
 		return repository.save(existingEmployee);
 	}

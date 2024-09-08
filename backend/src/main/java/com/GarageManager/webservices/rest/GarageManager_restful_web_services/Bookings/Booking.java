@@ -33,20 +33,20 @@ public class Booking {
 	
 	@JsonManagedReference("Vehicle-Booking")
 	@ManyToOne()
-	@JoinColumn(name="vehicle_id")
+	@JoinColumn(name="vehicleId")
 	private Vehicle vehicle;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "booking_employee",
-        joinColumns = @JoinColumn(name = "booking_id"),
-        inverseJoinColumns = @JoinColumn(name = "employee_id")
+        joinColumns = @JoinColumn(name = "bookingId"),
+        inverseJoinColumns = @JoinColumn(name = "employeeId")
     )
 	private List<Employee> employees;
 	
 	@JsonManagedReference("Service-Booking")
 	@ManyToOne()
-	@JoinColumn(name="service_id")
+	@JoinColumn(name="serviceId")
 	private Service service;
 	
 	private LocalDate start_date;
@@ -59,6 +59,8 @@ public class Booking {
 	
 	private Integer totalAmountDue;
 	
+	private String Notes;
+	
 	@JsonManagedReference("Booking-Payment")
 	@OneToMany(mappedBy = "booking")
 	private List<Payment> payments;
@@ -67,8 +69,8 @@ public class Booking {
 		return bookingId;
 	}
 
-	public void setBookingId(Integer booking_id) {
-		this.bookingId = booking_id;
+	public void setBookingId(Integer bookingId) {
+		this.bookingId = bookingId;
 	}
 
 	public Vehicle getVehicle() {
@@ -145,10 +147,18 @@ public class Booking {
 
 	@Override
 	public String toString() {
-		return "Booking [booking_id=" + bookingId + ", vehicle=" + vehicle + ", employees=" + employees + ", service="
+		return "Booking [bookingId=" + bookingId + ", vehicle=" + vehicle + ", employees=" + employees + ", service="
 				+ service + ", start_date=" + start_date + ", delivery_date=" + delivery_date + ", bookingStatus="
-				+ bookingStatus + ", servicePrice=" + servicePrice + ", totalAmountDue=" + totalAmountDue
-				+ ", payments=" + payments + "]";
+				+ bookingStatus + ", servicePrice=" + servicePrice + ", totalAmountDue=" + totalAmountDue + ", Notes="
+				+ Notes + ", payments=" + payments + "]";
+	}
+
+	public String getNotes() {
+		return Notes;
+	}
+
+	public void setNotes(String notes) {
+		Notes = notes;
 	}
 
 }

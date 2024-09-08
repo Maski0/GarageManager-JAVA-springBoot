@@ -18,14 +18,14 @@ public class CustomerCustomDTOs {
 	    
 	    public static GetCustomerDTO fromEntity(Customer customer) {
 	    	GetCustomerDTO dto = new GetCustomerDTO();
-	        dto.customerId = customer.getCustomer_id();
+	        dto.customerId = customer.getCustomerId();
 	        dto.customerName = customer.getCustomer_name();
 	        dto.address = customer.getAddress();
 	        dto.email = customer.getE_mail();
 	        dto.phoneNumber = customer.getPhoneNumber();
 	        
 	        dto.vehicles = customer.getVehicles().stream()
-	                               .map(Vehicle::getVehicle_id)
+	                               .map(Vehicle::getVehicleId)
 	                               .collect(Collectors.toList());
 	        return dto;
 	    }

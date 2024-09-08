@@ -47,14 +47,14 @@ public class CustomerResource {
 	@PostMapping("/customers")
 	public ResponseEntity<Customer> createCustomer(@Valid @RequestBody Customer customer){
 		Customer saveCustomer = repository.save(customer);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{employeeID}").buildAndExpand(saveCustomer.getCustomer_id()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{employeeID}").buildAndExpand(saveCustomer.getCustomerId()).toUri();
 		return ResponseEntity.created(location).build();
 	}
 	
 	@PutMapping("/customer")
 	public Customer updateCustomer(@Valid @RequestBody Customer customer) {
-		Customer existingCustomer = repository.findById(customer.getCustomer_id()).orElseThrow(
-				() -> new NotFoundException("Customer ID: " + customer.getCustomer_id()));
+		Customer existingCustomer = repository.findById(customer.getCustomerId()).orElseThrow(
+				() -> new NotFoundException("Customer ID: " + customer.getCustomerId()));
 		
 		existingCustomer.UpdateValues(customer);
 		return repository.save(existingCustomer);

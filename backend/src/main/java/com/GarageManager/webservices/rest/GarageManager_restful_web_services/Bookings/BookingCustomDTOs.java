@@ -163,13 +163,13 @@ public class BookingCustomDTOs {
 			dto.setStart_date(booking.getStart_date());
 			dto.setTotalAmountDue(booking.getTotalAmountDue());
 			
-			dto.setService(booking.getService().getService_id());
-			dto.setVehicle(booking.getVehicle().getVehicle_id());
+			dto.setService(booking.getService().getServiceId());
+			dto.setVehicle(booking.getVehicle().getVehicleId());
 			dto.setEmployees(booking.getEmployees().stream()
-					.map(Employee::getEmployee_id)
+					.map(Employee::getEmployeeId)
 					.collect(Collectors.toList()));
 			dto.setPayments(booking.getPayments().stream()
-					.map(Payment::getPayment_id)
+					.map(Payment::getPaymentId)
 					.collect(Collectors.toList()));
 			
 			return dto;

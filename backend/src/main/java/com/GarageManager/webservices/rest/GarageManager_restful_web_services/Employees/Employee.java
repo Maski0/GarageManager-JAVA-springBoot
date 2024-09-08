@@ -18,7 +18,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "employee_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "employeeId")
 public class Employee {
 	
 	protected Employee() {
@@ -27,7 +27,7 @@ public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer employee_id; 
+	private Integer employeeId; 
 	
 	@Size(min=3, max=30,message = "Name Should have Atleast 3 characters")
 	private String employee_name;
@@ -48,14 +48,14 @@ public class Employee {
     private List<Booking> bookings;
 	
 	
-	public Employee(Integer employee_id,
+	public Employee(Integer employeeId,
 			String employee_name,
 			String address,
 			String e_mail,
 			Long ph_no,
 			LocalDate date_of_Joining) {
 		super();
-		this.employee_id = employee_id;
+		this.employeeId = employeeId;
 		this.employee_name = employee_name;
 		this.address = address;
 		this.e_mail = e_mail;
@@ -64,13 +64,13 @@ public class Employee {
 	}
 
 
-	public Integer getEmployee_id() {
-		return employee_id;
+	public Integer getEmployeeId() {
+		return employeeId;
 	}
 
 
-	public void setEmployee_id(Integer employee_id) {
-		this.employee_id = employee_id;
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
 	}
 
 
@@ -126,7 +126,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [employee_id=" + employee_id + ", employee_name=" + employee_name + ", address=" + address
+		return "Employee [employee_id=" + employeeId + ", employee_name=" + employee_name + ", address=" + address
 				+ ", e_mail=" + e_mail + ", ph_no=" + phoneNumber + ", date_of_Joining=" + date_of_Joining + ", bookings="
 				+ bookings + "]";
 	}
